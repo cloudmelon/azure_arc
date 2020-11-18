@@ -1,11 +1,15 @@
-# Overview
+# Onboard a local Windows server hosted with Vagrant into Azure Arc
 
-The following README will guide you on how to deploy a local "Ready to Go" **Windows 10** virtual machine using [Vagrant](https://www.vagrantup.com/) and connect it as an Azure Arc server resource.
+The following README will guide you on how to deploy a local "Ready to Go" **Windows 10** virtual machine using [Vagrant](https://www.vagrantup.com/) and connect it as an Azure Arc enabled server resource.
 
 # Prerequisites
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * Vagrant relies on an underlying hypervisor. For the purpose of this guide, we will be using "Oracle VM VirtualBox".
@@ -49,11 +53,11 @@ The following README will guide you on how to deploy a local "Ready to Go" **Win
     
     **Note**: It is optional but highly recommended to scope the SP to a specific [Azure subscription and Resource Group](https://docs.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest)
 
-* The Vagrantfile executes a script on the VM OS to install all the needed artifacts as well to inject environment variables. Edit the [*scripts/vars.ps1*](../local/vagrant/windows/scripts/vars.ps1) Powershell script to match the Azure Service Principle you've just created. 
+* The Vagrantfile executes a script on the VM OS to install all the needed artifacts as well to inject environment variables. Edit the [*scripts/vars.ps1*](../local/vagrant/windows/scripts/vars.ps1) Powershell script to match the Azure Service Principal you've just created. 
 
     * subscriptionId=Your Azure Subscription ID
-    * appId=Your Azure Service Principle name
-    * password=Your Azure Service Principle password
+    * appId=Your Azure Service Principal name
+    * password=Your Azure Service Principal password
     * tenantId=Your Azure tenant ID
     * resourceGroup=Azure Resource Group Name
     * location=Azure Region
@@ -73,7 +77,7 @@ Once the download is complete, the actual provisioning will start. As you can se
 
 ![](../img/local_vagrant_windows/02.png)
 
-Upon completion, you will have a local Windows 10 VM deployed, connected as a new Azure Arc server inside a new Resource Group. 
+Upon completion, you will have a local Windows 10 VM deployed, connected as a new Azure Arc enabled server inside a new Resource Group. 
 
 ![](../img/local_vagrant_windows/03.png)
 
@@ -81,7 +85,7 @@ Upon completion, you will have a local Windows 10 VM deployed, connected as a ne
 
 # Semi-Automated Deployment (Optional)
 
-As you may noticed, the last step of the run is to register the VM as a new Arc server resource. 
+As you may noticed, the last step of the run is to register the VM as a new Azure Arc enabled server resource. 
 
 ![](../img/local_vagrant_windows/05.png)
 

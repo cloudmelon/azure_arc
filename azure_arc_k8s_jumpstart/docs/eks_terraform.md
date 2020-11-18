@@ -4,11 +4,12 @@ The following README will guide you on how to use the provided [Terraform](https
 
 # Prerequisites
 
-* Clone the repo
-  ```bash
-  git clone https://github.com/microsoft/azure_arc.git
-  ``` 
+* Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [Configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) AWS CLI
 
 * Install **wget** package (required for the eks module)
@@ -75,12 +76,14 @@ The following README will guide you on how to use the provided [Terraform](https
   az extension add --name k8sconfiguration
   ```
 
+**Note: If you already used this guide before and/or have the extensions installed, use the ```az extension update --name connectedk8s``` and the ```az extension update --name k8sconfiguration``` commands.**
+
 * Create AWS User IAM Key
 
   An access key grants programmatic access to your resources. To create an AWS Access Key for a user:
   1. Navigate to the [IAM Access page](https://console.aws.amazon.com/iam/home#/home). 
     ![](../img/eks_terraform/image0.png)
-  2. Select the **Users** from the side menue. 
+  2. Select the **Users** from the side menu. 
     ![](../img/eks_terraform/image1.png)
   3. Select the **User** you want to create the access key for. 
    ![](../img/eks_terraform/image2.png)
@@ -90,7 +93,12 @@ The following README will guide you on how to use the provided [Terraform](https
   ![](../img/eks_terraform/image4.png)
   6. In the popup window it will show you the ***Access key ID*** and ***Secret access key***. Save both of these values to configure **AWS CLI** later
   ![](../img/eks_terraform/image5.png)
-
+  7. Set your credentials via the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, environment variables, representing your AWS Access Key and AWS Secret Key.
+      ```bash
+        $ export AWS_ACCESS_KEY_ID="anaccesskey"
+        $ export AWS_SECRET_ACCESS_KEY="asecretkey"
+        $ export AWS_DEFAULT_REGION="us-west-2"
+      ```
 # Deployment
 * Navigate to the folder that has **EKS** terraform binaries.
   ```bash
@@ -121,7 +129,7 @@ The following README will guide you on how to use the provided [Terraform](https
   Server Version: version.Info{Major:"1", Minor:"16+", GitVersion:"v1.16.8-eks-e16311", GitCommit:"e163110a04dcb2f39c3325af96d019b4925419eb", GitTreeState:"clean", BuildDate:"2020-03-27T22:37:12Z", GoVersion:"go1.13.8", Compiler:"gc", Platform:"linux/amd64"}
   ```
 
-* **Configure EKS Nodes to communicate to EKS Control place**<br>
+* **Configure EKS Nodes to communicate to EKS Control Plane**<br>
 Now let’s add the ConfigMap to the cluster from Terraform as well. The ConfigMap is a Kubernetes configuration, in this case for granting access to our EKS cluster. This ConfigMap allows our ec2 instances in the cluster to communicate with the EKS master, as well as allowing our user account access to run commands against the cluster. You’ll run the Terraform output command to a file, and the kubectl apply command to apply that file:
   ```bash
   terraform output config_map_aws_auth > configmap.yml
@@ -160,7 +168,7 @@ Now that you have a running EKS cluster, lets connect the EKS cluster to Azure A
   
 * Deploy Arc binaries using Azure CLI:
   ```bash
-  az connectedk8s connect -n arceksdemo -g arceksdemo
+  az connectedk8s connect --name arceksdemo --resource-group arceksdemo --location 'eastus' --tags 'Project=jumpstart_azure_arc_k8s'
   ```
 
 * Upon completion, you will have your EKS cluster connect as a new Azure Arc Kubernetes cluster resource in a new Resource Group.

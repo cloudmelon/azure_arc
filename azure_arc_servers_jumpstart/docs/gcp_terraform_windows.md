@@ -1,11 +1,15 @@
-# Overview
+#  Onboard a GCP Windows server with Azure Arc
 
-The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy a Windows Server GCP virtual machine and connect it as an Azure Arc server resource.
+The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy a Windows Server GCP virtual machine and connect it as an Azure Arc enabled server resource.
 
 # Prerequisites
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * [Install Terraform >=0.12](https://learn.hashicorp.com/terraform/getting-started/install.html)
@@ -90,13 +94,13 @@ Before executing the Terraform plan, you must set and then export the environmen
 
     ![](../img/gcp_windows/08.png)
 
-* Next, run the ```terraform apply --auto-approve``` command and wait for the plan to finish. Upon completion of the Terraform script, you will have deployed a GCP Windows Server 2019 VM and initiated a script to download the Azure Arc agent to the VM and connect the VM as a new Azure Arc server inside a new Azure Resource Group. It will take a few minutes for the agent to finish provisioning so grab a coffee.
+* Next, run the ```terraform apply --auto-approve``` command and wait for the plan to finish. Upon completion of the Terraform script, you will have deployed a GCP Windows Server 2019 VM and initiated a script to download the Azure Arc agent to the VM and connect the VM as a new Azure Arc enabled server inside a new Azure Resource Group. It will take a few minutes for the agent to finish provisioning so grab a coffee.
 
     ![](../img/gcp_windows/09.png)
 
 * After a few minutes, you should be able to open the Azure portal and navigate to the resource group "Arc-GCP-Demo". The Windows Server virtual machine created in GCP will be visible as a resource.
 
-    ![](../img/gcp_windows/10.png)
+    ![](../img/gcp_windows/33.png)
 
 # Semi-Automated Deployment (Optional)
 

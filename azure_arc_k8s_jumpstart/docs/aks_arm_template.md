@@ -6,6 +6,10 @@ The following README will guide you on how to use the provided [Azure ARM Templa
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * [Generate SSH Key](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/create-ssh-keys-detailed) (or use existing ssh key).
@@ -37,8 +41,8 @@ The following README will guide you on how to use the provided [Azure ARM Templa
     
     **Note**: It is optional but highly recommended to scope the SP to a specific [Azure subscription and Resource Group](https://docs.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest) 
 
-* Enable subscription for two providers for Azure Arc enabled Kubernetes<br> 
-  Registration is an asynchronous process, and registration may take approximately 10 minutes.
+* Enable subscription for two providers for Azure Arc enabled Kubernetes. Registration is an asynchronous process, and registration may take approximately 10 minutes.
+
   ```bash
   az provider register --namespace Microsoft.Kubernetes
   Registering is still on-going. You can monitor using 'az provider show -n Microsoft.Kubernetes'
@@ -53,7 +57,7 @@ The following README will guide you on how to use the provided [Azure ARM Templa
   az provider show -n Microsoft.KubernetesConfiguration -o table
   ```
 
-# Deployment 
+# Deployment
 
 Before deploying the ARM template, determine which AKS Kubernetes versions are available in your region using the below Azure CLI command.
 
@@ -70,7 +74,7 @@ az group create --name <Name of the Azure Resource Group> --location <Azure Regi
 az deployment group create \
 --resource-group <Name of the Azure Resource Group> \
 --name <The name of this deployment> \
---template-file <The *azuredeploy.json* template file location> \
+--template-uri https://raw.githubusercontent.com/microsoft/azure_arc/master/azure_arc_k8s_jumpstart/aks/arm_template/azuredeploy.json \
 --parameters <The *azuredeploy.parameters.json* parameters file location>
 ```
 
@@ -81,7 +85,7 @@ az group create --name Arc-AKS-Demo --location "East US"
 az deployment group create \
 --resource-group Arc-AKS-Demo \
 --name arcaksdemo01 \
---template-file azuredeploy.json \
+--template-uri https://raw.githubusercontent.com/microsoft/azure_arc/master/azure_arc_k8s_jumpstart/aks/arm_template/azuredeploy.json \
 --parameters azuredeploy.parameters.json
 ```
 

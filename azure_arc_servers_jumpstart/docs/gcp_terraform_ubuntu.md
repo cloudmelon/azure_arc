@@ -1,10 +1,14 @@
-# Overview
+#  Onboard a GCP Ubuntu server with Azure Arc
 
-The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy an Ubuntu Server GCP virtual machine and connect it as an Azure Arc server resource.
+The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy an Ubuntu Server GCP virtual machine and connect it as an Azure Arc enabled server resource.
 
 # Prerequisites
 
 * Clone this repo
+
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
 
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
@@ -86,15 +90,15 @@ Before executing the Terraform plan, you must export the environment variables w
 
     ![](../img/gcp_ubuntu/08.png)
 
-* Next, run the ```terraform apply --auto-approve``` command and wait for the plan to finish. Upon completion, you will have a GCP Ubuntu VM deployed and connected as a new Azure Arc server inside a new Resource Group.
+* Next, run the ```terraform apply --auto-approve``` command and wait for the plan to finish. Upon completion, you will have a GCP Ubuntu VM deployed and connected as a new Azure Arc enabled server inside a new Resource Group.
 
 * Open the Azure portal and navigate to the resource group "Arc-GCP-Demo". The virtual machine created in GCP will be visible as a resource.
 
-    ![](../img/gcp_ubuntu/09.png)
+    ![](../img/gcp_ubuntu/18.png)
 
 # Semi-Automated Deployment (Optional)
 
-As you may have noticed, the last step of the run is to register the VM as a new Arc server resource.
+As you may have noticed, the last step of the run is to register the VM as a new Azure Arc enabled server resource.
     ![](../img/gcp_ubuntu/10.png)
 
 If you want to demo/control the actual registration process, do the following: 

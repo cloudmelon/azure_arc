@@ -1,11 +1,15 @@
-# Overview
+#  Onboard an AWS Ubuntu server with Azure Arc
 
-The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy an AWS EC2 virtual machine and connect it as an Azure Arc server resource.
+The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy an AWS EC2 virtual machine and connect it as an Azure Arc enabled server resource.
 
 # Prerequisites
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * [Generate SSH Key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) (or use existing ssh key) 
@@ -106,7 +110,7 @@ Before executing the Terraform plan, you must export the environment variables w
 
 # Deployment
 
-* Run the ```terraform apply --auto-approve``` command and wait for the plan to finish. Upon completion, you will have an AWS Amazon Linux 2 VM deployed and connected as a new Azure Arc server inside a new Resource Group.
+* Run the ```terraform apply --auto-approve``` command and wait for the plan to finish. Upon completion, you will have an AWS Amazon Linux 2 VM deployed and connected as a new Azure Arc enabled server inside a new Resource Group.
 
 * Open the Azure portal and navigate to the resource group "Arc-AWS-Demo". The virtual machine created in AWS will be visible as a resource.
 
@@ -116,7 +120,7 @@ Before executing the Terraform plan, you must export the environment variables w
 
 # Semi-Automated Deployment (Optional)
 
-As you may have noticed, the last step of the run is to register the VM as a new Arc server resource.
+As you may have noticed, the last step of the run is to register the VM as a new Azure Arc enabled server resource.
     ![](../img/aws_ubuntu/11.png)
 
 If you want to demo/control the actual registration process, do the following: 

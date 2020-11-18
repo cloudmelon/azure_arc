@@ -2,11 +2,11 @@
 
 sudo apt-get update
 
-# <--- Change the following environment variables according to your Azure Service Principle name --->
+# <--- Change the following environment variables according to your Azure Service Principal name --->
 
 export subscriptionId='<Your Azure Subscription ID>'
-export appId='<Your Azure Service Principle name>'
-export password='<Your Azure Service Principle password>'
+export appId='<Your Azure Service Principal name>'
+export password='<Your Azure Service Principal password>'
 export tenantId='<Your Azure tenant ID>'
 export resourceGroup='<Azure Resource Group Name>'
 export location='<Azure Region>'
@@ -39,4 +39,4 @@ az login --service-principal --username $appId --password $password --tenant $te
 az group create --location $location --name $resourceGroup --subscription $subscriptionId
 
 echo "Connecting the cluster to Azure Arc"
-az connectedk8s connect --name $arcClusterName --resource-group $resourceGroup --location 'eastus'
+az connectedk8s connect --name $arcClusterName --resource-group $resourceGroup --location 'eastus' --tags 'Project=jumpstart_azure_arc_k8s'

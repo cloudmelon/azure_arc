@@ -1,10 +1,10 @@
-# Overview
+# Azure Arc enabled servers MMA Extension
 
 The following README will guide you on how to manage extensions on Azure Arc connected machines. Virtual machine extensions are small applications that provide post-deployment configuration and automation tasks such as software installation, anti-virus protection, or a mechanism to run a custom script.
 
-Azure Arc for servers, enables you to deploy Azure VM extensions to non-Azure Windows and Linux VMs, giving you a hybrid or multicloud management experience that levels to Azure VMs.
+Azure Arc enabled servers, enables you to deploy Azure VM extensions to non-Azure Windows and Linux VMs, giving you a hybrid or multicloud management experience that levels to Azure VMs.
 
-You can use the Azure Portal, Azure CLI, an ARM template, PowerShell script or Azure policies to manage the extension deployment to Arc servers, both Linux and Windows. In this guide, you will use an ARM template deploy the Microsoft Monitoring Agent (MMA) to your servers so they are onboarded on Azure Services that leverage this service: Azure Monitor, Azure Security Center, Azure Sentinel, etc. 
+You can use the Azure Portal, Azure CLI, an ARM template, PowerShell script or Azure policies to manage the extension deployment to Azure Arc enabled servers, both Linux and Windows. In this guide, you will use an ARM template deploy the Microsoft Monitoring Agent (MMA) to your servers so they are onboarded on Azure Services that leverage this service: Azure Monitor, Azure Security Center, Azure Sentinel, etc. 
 
 **Note: This guide assumes you already deployed VMs or servers that are running on-premises or other clouds and you have connected them to Azure Arc.**
 
@@ -14,12 +14,15 @@ You can use the Azure Portal, Azure CLI, an ARM template, PowerShell script or A
 - **[VMware Ubuntu VM](vmware_terraform_ubuntu.md) / [VMware Windows Server VM](vmware_terraform_winsrv.md)**
 - **[Local Ubuntu VM](local_vagrant_ubuntu.md) / [Local Windows VM](local_vagrant_windows.md)**
 
+Please review the [Azure Monitor Supported OS documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-enable-overview#supported-operating-systems) and ensure that the VMs you will use for this exercise are supported. For Linux VMs, check both the Linux distro and kernel to ensure you are using a supported configuration.
 
 # Prerequisites
 
-* Clone this repo.
+* Clone this repo
 
-* Register your subscription to access preview extensions functionality.
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
 
 * As mentioned, this guide starts at the point where you already deployed and connected VMs or servers to Azure Arc. In the screenshots below you can see a GCP server has been connected with Azure Arc and is visible as a resource in Azure.
 
@@ -65,7 +68,7 @@ To deploy the ARM template, navigate to the [deployment folder](../extensions/ar
     --parameters <The *log_analytics-template.parameters.json* template file location>
   ```
 
-# Azure Arc for Servers Microsoft Monitoring Agent Extension Deployment
+# Azure Arc enabled Servers Microsoft Monitoring Agent Extension Deployment
 
 * Edit the [*extensions parameters file*](../extensions/arm/mma-template.parameters.json) 
 

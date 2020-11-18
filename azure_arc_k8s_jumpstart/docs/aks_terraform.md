@@ -6,6 +6,10 @@ The following README will guide you on how to use the provided [Terraform](https
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * [Install Terraform >=0.12](https://learn.hashicorp.com/terraform/getting-started/install.html)
@@ -55,7 +59,7 @@ The following README will guide you on how to use the provided [Terraform](https
 
 # Deployment
 
-The only thing you need to do before executing the Terraform plan is to export the environment variables which will be used by the plan. This is based on the Azure Service Principle you've just created and your subscription.  
+The only thing you need to do before executing the Terraform plan is to export the environment variables which will be used by the plan. This is based on the Azure Service Principal you've just created and your subscription.  
 
 In addition, validate that the AKS Kubernetes version is available in your region using the below Azure CLI command.
 

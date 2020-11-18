@@ -6,6 +6,10 @@ The following README will guide you on how to use the provided [Terraform](https
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * [Create a free Google Cloud account](https://cloud.google.com/free)
@@ -65,7 +69,7 @@ The following README will guide you on how to use the provided [Terraform](https
 
 ![](../img/gke_terraform/03.png)
 
-* Enable the Compute Engine API for the project, create a project Owner service account credentials and download the private key JSON file.Save the file to the directory where Terraform files are located and change the JSON file name (for example *account.json*). The Terraform plan will be using the file to authenticate against your GCP project.   
+* Enable the Compute Engine API for the project, create a project Owner service account credentials and download the private key JSON file and copy the file to the directory where Terraform files are located. Change the JSON file name (for example *account.json*). The Terraform plan will be using the credentials stored in this file to authenticate against your GCP project.   
 
 ![](../img/gke_terraform/04.png)
 
@@ -99,7 +103,7 @@ The following README will guide you on how to use the provided [Terraform](https
 
 # Deployment
 
-The only thing you need to do before executing the Terraform plan is to export the environment variables which will be used by the plan. This is based on the Azure Service Principle you've just created and your subscription.  
+The only thing you need to do before executing the Terraform plan is to export the environment variables which will be used by the plan. This is based on the Azure Service Principal you've just created and your subscription.  
 
 * Export the environment variables needed for the Terraform plan.
 
@@ -121,7 +125,7 @@ The only thing you need to do before executing the Terraform plan is to export t
     export TF_VAR_gcp_region=us-west1
     export TF_VAR_gke_cluster_name=arc-gke-demo
     export TF_VAR_admin_username=arcdemo
-    export TF_VAR_admin_password=arcdemo123!!
+    export TF_VAR_admin_password='arcdemo1234567!!'
     export TF_VAR_gke_cluster_node_count=1
   ```    
 

@@ -74,23 +74,23 @@ The following README will guide you on how to connect an existing Kubernetes clu
 
 ![](../img/onboard_k8s/01.png)
 
-* Change the following environment variables according to your Azure Service Principle name and Azure environment.
+* Change the following environment variables according to your Azure Service Principal name and Azure environment.
 
 If using shell:
 
 ```bash
-export appId='<Your Azure Service Principle name>'
-export password='<Your Azure Service Principle password>'
+export appId='<Your Azure Service Principal name>'
+export password='<Your Azure Service Principal password>'
 export tenantId='<Your Azure tenant ID>'
 export resourceGroup='<Azure Resource Group Name>'
 export arcClusterName='<The name of your k8s cluster as it will be shown in Azure Arc>'
 ```
 
-If using shell:
+If using PowerShell:
 
 ```powershell
-$env:appId=<Your Azure Service Principle name>
-$env:password=<Your Azure Service Principle password>
+$env:appId=<Your Azure Service Principal name>
+$env:password=<Your Azure Service Principal password>
 $env:tenantId=<Your Azure tenant ID>
 $env:resourceGroup=<Azure Resource Group Name>
 $env:arcClusterName=<The name of your k8s cluster as it will be shown in Azure Arc>
@@ -104,6 +104,8 @@ $env:arcClusterName=<The name of your k8s cluster as it will be shown in Azure A
   az extension add --name connectedk8s
   az extension add --name k8sconfiguration
   ```
+
+**Note: If you already used this guide before and/or have the extensions installed, use the ```az extension update --name connectedk8s``` and the ```az extension update --name k8sconfiguration``` commands.**
 
 * Login to your Azure Subscription using the SP you created.  
 
@@ -135,7 +137,7 @@ $env:arcClusterName=<The name of your k8s cluster as it will be shown in Azure A
   If using shell:
 
   ```bash
-  az connectedk8s connect --name arcClusterName --resource-group $resourceGroup
+  az connectedk8s connect --name $arcClusterName --resource-group $resourceGroup
   ```
 
   If using Powershell:

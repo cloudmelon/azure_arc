@@ -1,4 +1,4 @@
-# Overview
+# Onboard an existing Windows server with Azure Arc
 
 The following README will guide you on how to connect an Windows machine to Azure Arc using a simple Powershell script.
 
@@ -51,7 +51,7 @@ On the designated machine, Open Powershell ISE **as Administrator** and run the 
 
 ![](../img/onboard_server_win/04.png)
 
-Upon completion, you will have your Linux server, connected as a new Azure Arc resource inside your Resource Group. 
+Upon completion, you will have your Windows server, connected as a new Azure Arc resource inside your Resource Group. 
 
 ![](../img/onboard_server_win/05.png)
 

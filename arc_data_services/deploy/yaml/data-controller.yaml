@@ -1,0 +1,49 @@
+apiVersion: arcdata.microsoft.com/v1alpha1
+kind: datacontroller
+metadata:
+  generation: 1
+  name: arc
+spec:
+  credentials:
+    controllerAdmin: controller-login-secret
+    #dockerRegistry: <optional image pull secret if you are pulling images from a private container registry that requires authentication>
+    serviceAccount: sa-mssql-controller
+  docker:
+    imagePullPolicy: Always
+    imageTag: latest
+    registry: mcr.microsoft.com
+    repository: arcdata
+  security:
+    allowDumps: true
+    allowNodeMetricsCollection: true
+    allowPodMetricsCollection: true
+    allowRunAsRoot: false
+  services:
+  - name: controller
+    port: 30080
+    serviceType: LoadBalancer # Modify serviceType based on your Kubernetes environment
+  - name: serviceProxy
+    port: 30777
+    serviceType: LoadBalancer # Modify serviceType based on your Kubernetes environment
+  settings:
+    ElasticSearch:
+      vm.max_map_count: "-1"
+    azure:
+      connectionMode: Indirect
+      location: eastus
+      resourceGroup: <your resource group>
+      subscription: <your subscription GUID>
+    controller:
+      displayName: arc
+      enableBilling: "True"
+      logs.rotation.days: "7"
+      logs.rotation.size: "5000"
+  storage:
+    data:
+      accessMode: ReadWriteOnce
+      className: default # Use default configured storage class or modify storage class based on your Kubernetes environment
+      size: 15Gi
+    logs:
+      accessMode: ReadWriteOnce
+      className: default # Use default configured storage class or modify storage class based on your Kubernetes environment
+      size: 10Gi

@@ -1,11 +1,15 @@
-# Overview
+# Onboard a VMware Ubuntu server with Azure Arc
 
-The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy an Ubuntu Server, VMware vSphere virtual machine and connect it as an Azure Arc server resource.
+The following README will guide you on how to use the provided [Terraform](https://www.terraform.io/) plan to deploy an Ubuntu Server, VMware vSphere virtual machine and connect it as an Azure Arc enabled server resource.
 
 # Prerequisites
 
 * Clone this repo
 
+    ```terminal
+    git clone https://github.com/microsoft/azure_arc.git
+    ```
+    
 * [Install or update Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). **Azure CLI should be running version 2.7** or later. Use ```az --version``` to check your current installed version.
 
 * [Install Terraform >=0.12](https://learn.hashicorp.com/terraform/getting-started/install.html)
@@ -54,8 +58,8 @@ Before executing the Terraform plan, you must set the environment variables whic
 * The Terraform plan creates resources in both Microsoft Azure and VMware vSphere. It then executes a script on the virtual machine to install the Azure Arc agent and all necessary artifacts. This script requires certain information about your VMware vSphere and Azure environments. Edit [*scripts/vars.sh*](../vmware/ubuntu/terraform/scripts/vars.sh) and update each of the variables with the appropriate values.
     
     * TF_VAR_subscription_id=Your Azure Subscription ID
-    * TF_VAR_client_id=Your Azure Service Principle name
-    * TF_VAR_client_secret=Your Azure Service Principle password
+    * TF_VAR_client_id=Your Azure Service Principal name
+    * TF_VAR_client_secret=Your Azure Service Principal password
     * TF_VAR_tenant_id=Your Azure tenant ID
     * TF_VAR_resourceGroup=Azure Resource Group Name
     * TF_VAR_location=Azure Region
@@ -81,7 +85,7 @@ Before executing the Terraform plan, you must set the environment variables whic
 
 * Run the ```terraform apply --auto-approve``` command and wait for the plan to finish. 
 
-Once the Terraform deployment is completed, a new Ubuntu Server VM will be up & running and will be projected as an Azure Arc server resource in a newly created Azure Resource Group. 
+Once the Terraform deployment is completed, a new Ubuntu Server VM will be up & running and will be projected as an Azure Arc enabled server resource in a newly created Azure Resource Group. 
 
 ![](../img/vmware_terraform_ubuntu/03.png)
 
